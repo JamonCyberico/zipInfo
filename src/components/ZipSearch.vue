@@ -26,12 +26,14 @@ export default defineComponent({
     VForm,
     Field,
   },
+  emits: ["get-zip"],
   methods: {
     onSubmit(values: any) {
-      if (!values.zip || values.zip.length !== ZIP_CODE_LENGTH) {
+      if (!values.zip || String(values.zip).length != ZIP_CODE_LENGTH) {
         this.showAlert("Input must be 5 digits");
         return;
       }
+      this.$emit("get-zip", values.zip);
     },
     async showAlert(message: string) {
       const alert = await alertController.create({
