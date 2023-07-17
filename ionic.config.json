@@ -1,0 +1,7 @@
+{
+  "name": "cityInfo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
