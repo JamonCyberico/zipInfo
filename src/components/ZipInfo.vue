@@ -15,8 +15,8 @@
       </ion-item>
       <ion-item>
         <ion-label>Longitude:</ion-label>
-        <ion-note>{{ data.places[0].longitude }} </ion-note></ion-item
-      >
+        <ion-note>{{ data.places[0].longitude }} </ion-note>
+      </ion-item>
     </ion-card-content>
   </ion-card>
   <div v-else>No data yet</div>

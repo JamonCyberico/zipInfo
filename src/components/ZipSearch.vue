@@ -1,16 +1,12 @@
 <template>
   <VForm @submit="onSubmit">
-    <ion-col>
-      <ion-item>
-        <ion-label class="text-red-200">Postal code:</ion-label>
-        <Field name="zip" type="number" />
-      </ion-item>
-    </ion-col>
-    <ion-col>
-      <ion-button type="submit" color="primary" expand="block">
-        Search
-      </ion-button>
-    </ion-col>
+    <div>
+      <ion-label>Postal code:</ion-label>
+      <Field name="zip" type="number" />
+    </div>
+    <ion-button type="submit" color="primary" expand="block">
+      Search
+    </ion-button>
   </VForm>
 </template>
 
