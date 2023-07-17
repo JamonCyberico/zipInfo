@@ -2,7 +2,7 @@
   <VForm @submit="onSubmit">
     <ion-col>
       <ion-item>
-        <ion-label>Postal code:</ion-label>
+        <ion-label class="text-red-200">Postal code:</ion-label>
         <Field name="zip" type="number" />
       </ion-item>
     </ion-col>
@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { IonLabel } from "@ionic/vue";
 import { Form as VForm, Field } from "vee-validate";
 import { alertController } from "@ionic/vue";
 import { ZIP_CODE_LENGTH } from "@/constants";
@@ -25,6 +26,7 @@ export default defineComponent({
   components: {
     VForm,
     Field,
+    IonLabel,
   },
   emits: ["get-zip"],
   methods: {

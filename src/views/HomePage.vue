@@ -7,6 +7,7 @@
     </ion-header>
     <ion-content class="ion-">
       <ZipSearch @get-zip="onGetZipCode" />
+      <ZipInfo :data="info" />
     </ion-content>
   </ion-page>
 </template>
@@ -14,11 +15,18 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import ZipSearch from "@/components/ZipSearch.vue";
+import ZipInfo from "@/components/ZipInfo.vue";
 import { alertController } from "@ionic/vue";
 
 export default defineComponent({
   components: {
     ZipSearch,
+    ZipInfo,
+  },
+  data() {
+    return {
+      info: null,
+    };
   },
   methods: {
     async onGetZipCode(zip: number) {
@@ -33,6 +41,8 @@ export default defineComponent({
         return;
       }
       const data = await res.json();
+      this.info = data;
+      console.log(data);
     },
   },
 });
