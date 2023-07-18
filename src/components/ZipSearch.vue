@@ -1,12 +1,20 @@
 <template>
   <VForm @submit="onSubmit">
-    <div>
+    <div class="p-2 flex justify-between items-center">
       <ion-label>Postal code:</ion-label>
-      <Field name="zip" type="number" />
+      <Field
+        name="zip"
+        type="number"
+        class="p-1 border border-grey-200 rounded-lg"
+      />
     </div>
-    <ion-button type="submit" color="primary" expand="block">
+    <button
+      type="submit"
+      class="bg-green-500 w-full rounded-xl p-4 text-white text-center font-bold"
+      expand="block"
+    >
       Search
-    </ion-button>
+    </button>
   </VForm>
 </template>
 
@@ -16,6 +24,7 @@ import { IonLabel } from "@ionic/vue";
 import { Form as VForm, Field } from "vee-validate";
 import { alertController } from "@ionic/vue";
 import { ZIP_CODE_LENGTH } from "@/constants";
+import { IonButton } from "@ionic/vue";
 
 export default defineComponent({
   name: "ZipSearch",
@@ -23,6 +32,7 @@ export default defineComponent({
     VForm,
     Field,
     IonLabel,
+    IonButton,
   },
   emits: ["get-zip"],
   methods: {
