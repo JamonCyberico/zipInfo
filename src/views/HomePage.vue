@@ -9,7 +9,6 @@
       <ZipSearch @get-zip="fetchData" />
       <ZipInfo />
       <WeatherInfo />
-
       <ClearInfo v-if="cityInfo" />
     </ion-content>
   </ion-page>
