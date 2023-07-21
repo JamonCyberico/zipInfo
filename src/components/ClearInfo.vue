@@ -1,25 +1,21 @@
 <template>
-  <ion-button v-if="data" expand="block" @click="$emit('clear-info')">
-    Clear
-  </ion-button>
+  <ion-button expand="block" @click="clearCityInfo">Clear</ion-button>
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent } from "vue";
+import { defineComponent } from "vue";
 import { IonButton } from "@ionic/vue";
-import { ICityInfo } from "@/stores/types";
+import { mapActions } from "pinia";
+
+import useInfoStore from "@/stores/useInfoStore";
 
 export default defineComponent({
   name: "ClearInfo",
   components: {
     IonButton,
   },
-  emits: ["clear-info"],
-  props: {
-    data: {
-      type: Object as PropType<ICityInfo | null>,
-      default: null,
-    },
+  methods: {
+    ...mapActions(useInfoStore, ["clearCityInfo"]),
   },
 });
 </script>

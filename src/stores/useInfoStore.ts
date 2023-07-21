@@ -19,7 +19,6 @@ const useInfoStore = defineStore("info", {
           latitude: data.places[0].latitude,
           longitude: data.places[0].longitude,
         };
-        console.log(data);
       } catch (error) {
         console.error(error);
         const alert = await alertController.create({
@@ -34,25 +33,24 @@ const useInfoStore = defineStore("info", {
       this.cityInfo = null;
     },
     async getWeatherInfo() {
-      if (!this.cityInfo) {
-        return;
-      }
-      const { latitude, longitude } = this.cityInfo;
-      try {
-        const res = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m`
-        );
-        const data = await res.json();
-        console.log("weather", data);
-        this.weatherInfo = data;
-      } catch (error) {
-        console.error(error);
-        const alert = await alertController.create({
-          header: "Error",
-          message: "Failed to fetch the weather data for this city",
-          buttons: ["Ok"],
-        });
-        await alert.present();
+      if (this.cityInfo) {
+        const { latitude, longitude } = this.cityInfo;
+        try {
+          const res = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m`
+          );
+          const data = await res.json();
+          console.log("weather", data);
+          this.weatherInfo = data;
+        } catch (error) {
+          console.error(error);
+          const alert = await alertController.create({
+            header: "Error",
+            message: "Failed to fetch the weather data for this city",
+            buttons: ["Ok"],
+          });
+          await alert.present();
+        }
       }
     },
   },

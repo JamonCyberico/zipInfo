@@ -6,25 +6,17 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ZipSearch @get-zip="getCityInfo" />
-      <ZipInfo :data="cityInfo" />
-      <ClearInfo :data="cityInfo" @clear-info="clearCityInfo" />
-      <WeatherInfo v-if="cityInfo" />
-      <ion-button v-if="cityInfo" expand="block" @click="getWeatherInfo"
-        >Weather Info</ion-button
-      >
+      <ZipSearch @get-zip="fetchData" />
+      <ZipInfo />
+      <WeatherInfo />
+
+      <ClearInfo v-if="cityInfo" />
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import ZipSearch from "@/components/ZipSearch.vue";
-import ZipInfo from "@/components/ZipInfo.vue";
-import ClearInfo from "@/components/ClearInfo.vue";
-import WeatherInfo from "@/components/WeatherInfo.vue";
-
-import useInfoStore from "@/stores/useInfoStore";
 import { mapActions, mapState } from "pinia";
 import {
   IonPage,
@@ -33,6 +25,12 @@ import {
   IonTitle,
   IonContent,
 } from "@ionic/vue";
+
+import ZipSearch from "@/components/ZipSearch.vue";
+import ZipInfo from "@/components/ZipInfo.vue";
+import ClearInfo from "@/components/ClearInfo.vue";
+import WeatherInfo from "@/components/WeatherInfo.vue";
+import useInfoStore from "@/stores/useInfoStore";
 
 export default defineComponent({
   components: {
@@ -47,14 +45,18 @@ export default defineComponent({
     ClearInfo,
   },
   computed: {
-    ...mapState(useInfoStore, ["cityInfo"]),
+    ...mapState(useInfoStore, ["cityInfo", "weatherInfo"]),
   },
   methods: {
     ...mapActions(useInfoStore, [
       "getCityInfo",
-      "clearCityInfo",
       "getWeatherInfo",
+      "clearCityInfo",
     ]),
+    async fetchData(zip: number) {
+      await this.getCityInfo(zip);
+      await this.getWeatherInfo();
+    },
   },
 });
 </script>

@@ -20,11 +20,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { IonLabel } from "@ionic/vue";
+import { IonLabel, IonButton, alertController } from "@ionic/vue";
 import { Form as VForm, Field } from "vee-validate";
-import { alertController } from "@ionic/vue";
+
 import { ZIP_CODE_LENGTH } from "@/constants";
-import { IonButton } from "@ionic/vue";
 
 export default defineComponent({
   name: "ZipSearch",
