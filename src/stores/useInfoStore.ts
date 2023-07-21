@@ -40,7 +40,6 @@ const useInfoStore = defineStore("info", {
             `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m`
           );
           const data = await res.json();
-          console.log("weather", data);
           this.weatherInfo = data;
         } catch (error) {
           console.error(error);
